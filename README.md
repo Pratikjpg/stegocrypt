@@ -1,73 +1,62 @@
-# 🔐 StegoCrypt
+# 🔐 StegoCrypt — Image Steganography Tool
 
-**Image Steganography Web Application** — Hide secret messages inside images, completely invisible to the naked eye.
+> Hide secret messages inside images — completely invisible to the naked eye.
 
----
-
-## 📖 About
-
-StegoCrypt is a Flask-based web application that uses **LSB (Least Significant Bit) Steganography** to embed hidden text messages into PNG images. The changes to the image are imperceptible, making it a fun and practical tool for covert communication.
+🌐 **Live Site:** [stegocrypt.pythonanywhere.com](https://stegocrypt.pythonanywhere.com)
 
 ---
 
-## ✨ Features
+## ✨ About
+
+StegoCrypt is a Flask-based web application that uses **LSB (Least Significant Bit) Steganography** to embed hidden text messages into PNG images. The pixel-level changes are imperceptible to the human eye, making it a practical tool for covert communication and cybersecurity demonstrations.
+
+---
+
+## 🚀 Features
 
 - 🔒 **Hide Messages** — Embed any secret text into an image file
-- 🔓 **Reveal Messages** — Extract hidden text from a steganographic image
+- 🔓 **Reveal Messages** — Extract hidden text from a StegoCrypt-encoded image
 - 🖼️ **Image Preview** — Preview uploaded images before processing
 - 📥 **Auto Download** — Automatically downloads the output image after hiding
-- 🌐 **Web UI** — Clean, dark-themed browser interface, no installation needed for the user
+- 🌐 **Web UI** — Clean, dark-themed browser interface, no installation needed
 
 ---
 
-## 🛠️ Tech Stack
+## 🧱 Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Backend | Python, Flask |
-| Steganography | Pillow (PIL) — LSB encoding |
-| Frontend | HTML, CSS, Vanilla JavaScript |
+| Technology | Purpose |
+|---|---|
+| Python | Core logic |
+| Flask | Web framework |
+| Pillow (PIL) | Image processing |
+| HTML/CSS/JS | Frontend UI |
+| PythonAnywhere | Deployment & hosting |
+
+---
+
+## 🔬 How It Works
+
+1. **Hide:** Each character of the message is converted to binary. The least significant bit of each RGB channel in every pixel is replaced with one bit of the message — making the change invisible.
+2. **Reveal:** The LSBs are extracted from each pixel channel, reconstructed into bytes, and decoded back to the original message using custom `STEGO>>>` / `<<<STEGO` markers for integrity verification.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-stegocrypt/
-├── app.py              # Flask routes: /hide and /reveal
-├── stego.py            # Core LSB steganography logic
+StegoCrypt/
+├── app.py          # Flask routes (hide & reveal endpoints)
+├── stego.py        # LSB steganography logic
 └── templates/
-    └── index.html      # Frontend UI
+    └── index.html  # Frontend UI
 ```
 
 ---
 
-## ⚙️ How It Works
-
-### Hiding a Message
-1. The message is wrapped with a header/footer marker: `STEGO>>>message<<<STEGO`
-2. It's encoded to bytes with a 4-byte length prefix
-3. Each bit of the payload is stored in the **Least Significant Bit** of R, G, B channels of each pixel
-4. The modified image is saved and returned as a PNG
-
-### Revealing a Message
-1. LSBs are extracted from each pixel channel
-2. Bytes are reassembled and the length prefix is read
-3. The marker (`STEGO>>>` / `<<<STEGO`) is used to validate and extract the original message
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Python 3.7+
-- pip
-
-### Installation
+## 🚀 Run Locally
 
 ```bash
-# Clone the repository
+# Clone the repo
 git clone https://github.com/Pratikjpg/stegocrypt.git
 cd stegocrypt
 
@@ -78,39 +67,15 @@ pip install flask pillow
 python app.py
 ```
 
-Then open your browser and go to: `http://127.0.0.1:5000`
+Open [http://localhost:5000](http://localhost:5000)
 
 ---
 
-## 🖥️ Usage
+## 📬 Contact
 
-### Hide a Message
-1. Go to the **Hide Message** tab
-2. Upload any PNG/JPG image
-3. Type your secret message
-4. Click **Hide & Download Image** — a new PNG with your message embedded will be downloaded
-
-### Reveal a Message
-1. Go to the **Reveal Message** tab
-2. Upload an image that was previously processed by StegoCrypt
-3. Click **Reveal Secret Message** — the hidden text will be displayed
+**Pratik Jani** — Cybersecurity Enthusiast  
+🔗 [LinkedIn](https://linkedin.com/in/pratik-jani-246178316003aaa12aaa) · 🐙 [GitHub](https://github.com/Pratikjpg) · 🌐 [Portfolio](https://portfolioo1-one.vercel.app)
 
 ---
 
-## ⚠️ Limitations
-
-- The output image is always saved as **PNG** (lossless) — JPEG re-encoding would destroy the hidden bits
-- Message size is limited by image resolution (more pixels = more capacity)
-- Only works with images encoded using StegoCrypt (uses custom markers for validation)
-
----
-
-## 📜 License
-
-This project is open source. Feel free to use, modify, and distribute.
-
----
-
-## 👤 Author
-
-**Pratikjpg** — [github.com/Pratikjpg/stegocrypt](https://github.com/Pratikjpg/stegocrypt)
+*Built with 🐍 Python + Flask & pixel-level stealth.*
